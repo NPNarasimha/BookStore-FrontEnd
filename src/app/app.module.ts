@@ -13,12 +13,13 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginRegisterComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +33,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     FormsModule,
     HttpClientModule,
     MatTabsModule,
+    MatToolbarModule,
+   
 
 
   ],
