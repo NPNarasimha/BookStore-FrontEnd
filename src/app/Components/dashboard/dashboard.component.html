@@ -1,7 +1,6 @@
-<div>
-
+<div class="container">
     <mat-toolbar color="primary" class="header-toolbar">
-        <a [routerLink]="['/dashboard']">
+        <a [routerLink]="">
             <img src="https://public-v2links.adobecc.com/d096df37-ca37-4026-553f-8cfa6bec09ec/component?params=component_id%3A34a6421f-a569-47b8-bc37-078211517464&params=version%3A0&token=1747273348_da39a3ee_24b11a980620d9e0502f17660a4f5a0bfc90c416&api_key=CometServer1"
                 alt="Bookstore Logo"/>
         </a>
@@ -9,25 +8,34 @@
         <div class="search-wrapper ">
             <div class="search-bar">
                 <mat-icon>search</mat-icon>
-                <input type="text" placeholder="Search" />
+                <input type="text" placeholder="Search" 
+                [(ngModel)]="searchTerm"
+                (input)="onSearchChange()"
+                />
             </div>
         </div>
 
         <span class="example-spacer"></span>
         <div class="icon-group">
-            <button class="icon-button">
+            <button class="icon-button" [matMenuTriggerFor]="ProfileMenu">
                 <mat-icon>person</mat-icon>
                 <span>Profile</span>
             </button>
-
             <button class="icon-button">
                 <mat-icon>shopping_cart</mat-icon>
                 <span>Cart</span>
             </button>
         </div>
     </mat-toolbar>
-
-    <footer class="footer">
+<mat-menu #ProfileMenu="matMenu">
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      Logout
+    </button>
+  </mat-menu>
+  <!-- <app-display-books></app-display-books> -->
+  <router-outlet></router-outlet>
+<footer class="footer">
   <span>Copyright © 2020, Bookstore Private Limited. All Rights Reserved</span>
 </footer>
 

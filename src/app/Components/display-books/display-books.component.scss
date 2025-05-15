@@ -1,0 +1,140 @@
+.book-container {
+  padding: 20px 5vw;
+  flex: 1;
+  padding-bottom: 10vh;
+}
+
+.book-Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 10px;
+  padding-left: 20px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.sort-dropdown {
+  width: 300px;
+}
+
+.books-title {
+  font-size: 28px;
+  font-weight: bold;
+
+  span {
+    font-size: 16px;
+    color: gray;
+    margin-left: 8px;
+  }
+}
+
+.books {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  padding: 15px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.book-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  .book-image {
+    width: 100%;
+    height: 180px;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 10px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .book-details {
+    padding: 12px;
+
+    .bookname {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 6px;
+    }
+
+    .bookauthor {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .rating-box {
+      background-color: green;
+      color: white;
+      padding: 2px 8px;
+      font-weight: normal;
+      font-size: 12px;
+      margin: 6px 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 3px;
+    }
+
+    .rating-number {
+      font-size: 14px;
+      margin-right: 3px;
+    }
+
+    .star-icon {
+      font-size: 14px;
+    }
+
+    .book-price {
+      font-size: 16px;
+      color: #242222;
+      font-weight: 700;
+      margin: 5px 0;
+    }
+
+    .book-price.original {
+      font-size: 14px;
+      color: gray;
+      text-decoration: line-through;
+      margin-left: 5px;
+    }
+  }
+}
+.price-container{
+display:flex;
+flex-direction: row;
+
+}

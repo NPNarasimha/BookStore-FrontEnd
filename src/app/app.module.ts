@@ -14,12 +14,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import { DisplayBooksComponent } from './Components/display-books/display-books.component';
 
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
     LoginRegisterComponent,
     DashboardComponent,
+    DisplayBooksComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,8 +38,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     HttpClientModule,
     MatTabsModule,
     MatToolbarModule,
+    MatMenuModule,
+    MatSelectModule,
    
-
 
   ],
   providers: [
