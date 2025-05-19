@@ -27,8 +27,11 @@
           <div class="forgot-password">
             <a routerLink="/forgot">Forgot Password?</a>
           </div>
-
-          <button mat-flat-button color="warn" class="signup-btn" type="submit">Login</button>
+          <button mat-flat-button color="warn" class="signup-btn" type="submit" [disabled]="isLoading">
+            <mat-spinner *ngIf="isLoading" diameter="20" strokeWidth="3"></mat-spinner>
+            <span *ngIf="!isLoading">Login</span>
+          </button>
+          <!-- <button mat-flat-button color="warn" class="signup-btn" type="submit">Login</button> -->
           <div class="or-separator">
             <span>OR</span>
           </div>
@@ -40,37 +43,41 @@
       </mat-tab>
 
       <mat-tab label="Signup">
-      
-          <form [formGroup]="RegisterForm" (ngSubmit)="Register()" class="signup-form">
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>First Name</mat-label>
-              <input matInput formControlName="firstname" required />
-              <mat-error *ngIf="RegisterForm.get('firstname')?.invalid">Enter First name</mat-error>
-            </mat-form-field>
 
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Last Name</mat-label>
-              <input matInput formControlName="lastname" required />
-              <mat-error *ngIf="RegisterForm.get('lastname')?.invalid">Enter Last name</mat-error>
-            </mat-form-field>
+        <form [formGroup]="RegisterForm" (ngSubmit)="Register()" class="signup-form">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstname" required />
+            <mat-error *ngIf="RegisterForm.get('firstname')?.invalid">Enter First name</mat-error>
+          </mat-form-field>
 
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Email</mat-label>
-              <input matInput formControlName="email" required />
-              <mat-error *ngIf="RegisterForm.get('email')?.invalid">Enter email</mat-error>
-            </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastname" required />
+            <mat-error *ngIf="RegisterForm.get('lastname')?.invalid">Enter Last name</mat-error>
+          </mat-form-field>
 
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Password</mat-label>
-              <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required />
-              <button mat-icon-button matSuffix (click)="togglePassword()" type="button">
-                <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-              </button>
-              <mat-error *ngIf="RegisterForm.get('password')?.invalid">Enter password</mat-error>
-            </mat-form-field>
-            <button mat-flat-button color="warn" class="signup-btn" type="submit">Signup</button>
-          </form>
-       
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required />
+            <mat-error *ngIf="RegisterForm.get('email')?.invalid">Enter email</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required />
+            <button mat-icon-button matSuffix (click)="togglePassword()" type="button">
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="RegisterForm.get('password')?.invalid">Enter password</mat-error>
+          </mat-form-field>
+          <button mat-flat-button color="warn" class="signup-btn" type="submit" [disabled]="isLoading">
+            <mat-spinner *ngIf="isLoading" diameter="20" strokeWidth="3"></mat-spinner>
+            <span *ngIf="!isLoading">Signup</span>
+          </button>
+          <!-- <button mat-flat-button color="warn" class="signup-btn" type="submit">Signup</button> -->
+        </form>
+
       </mat-tab>
     </mat-tab-group>
   </div>

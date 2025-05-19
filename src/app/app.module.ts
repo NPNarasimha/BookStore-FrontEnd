@@ -12,18 +12,32 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 import { DisplayBooksComponent } from './Components/display-books/display-books.component';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatSelectModule } from '@angular/material/select';
+import { BookDetailsComponent } from './Components/book-details/book-details.component';
+import { CartComponent } from './Components/cart/cart.component';
+import { WishlistComponent } from './Components/wishlist/wishlist.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { OrderComponent } from './Components/order/order.component';
+import { MatTableModule } from '@angular/material/table';
+import { OrderItemsComponent } from './Components/order-items/order-items.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
     LoginRegisterComponent,
     DashboardComponent,
     DisplayBooksComponent,
+    BookDetailsComponent,
+    CartComponent,
+    WishlistComponent,
+    OrderComponent,
+    OrderItemsComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,8 +54,11 @@ import { MatSelectModule } from '@angular/material/select';
     MatToolbarModule,
     MatMenuModule,
     MatSelectModule,
-   
-
+    MatPaginatorModule,
+    MatBadgeModule,
+    MatRadioModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     provideClientHydration(withEventReplay())

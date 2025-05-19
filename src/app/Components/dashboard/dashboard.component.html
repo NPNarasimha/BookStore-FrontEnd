@@ -1,10 +1,10 @@
 <div class="container">
     <mat-toolbar color="primary" class="header-toolbar">
-        <a [routerLink]="">
-            <img src="https://public-v2links.adobecc.com/d096df37-ca37-4026-553f-8cfa6bec09ec/component?params=component_id%3A34a6421f-a569-47b8-bc37-078211517464&params=version%3A0&token=1747273348_da39a3ee_24b11a980620d9e0502f17660a4f5a0bfc90c416&api_key=CometServer1"
+        <a>
+            <img src="https://public-v2links.adobecc.com/d096df37-ca37-4026-553f-8cfa6bec09ec/component?params=component_id%3A6a559a8a-8ca5-4bf2-9f76-bb2d51e33b9f&params=version%3A0&token=1747723748_da39a3ee_dab04c4cdf86428bb9bed4ab03c36c256216e1c7&api_key=CometServer1"
                 alt="Bookstore Logo"/>
         </a>
-        <span>Bookstore</span>
+          <span class="title">Bookstore</span>
         <div class="search-wrapper ">
             <div class="search-bar">
                 <mat-icon>search</mat-icon>
@@ -21,7 +21,9 @@
                 <mat-icon>person</mat-icon>
                 <span>Profile</span>
             </button>
-            <button class="icon-button">
+            
+            <button class="icon-button" (click)="goToCart()" [routerLink]="['cart']" [matBadge]="cartCount"
+                matBadgeOverlap="false" [matBadgeHidden]="cartCount === 0">
                 <mat-icon>shopping_cart</mat-icon>
                 <span>Cart</span>
             </button>
@@ -32,8 +34,18 @@
       <mat-icon>exit_to_app</mat-icon>
       Logout
     </button>
+    
+    <button mat-menu-item (click)="MyOrders()">
+      <mat-icon>receipt_long</mat-icon>
+      Myorders
+    </button>
+    <button mat-menu-item (click)="wishList()">
+      <mat-icon>favorite</mat-icon>
+      wishList
+    </button>
   </mat-menu>
   <!-- <app-display-books></app-display-books> -->
+   
   <router-outlet></router-outlet>
 <footer class="footer">
   <span>Copyright © 2020, Bookstore Private Limited. All Rights Reserved</span>

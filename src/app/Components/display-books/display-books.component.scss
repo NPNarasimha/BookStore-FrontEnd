@@ -133,8 +133,23 @@
     }
   }
 }
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
 .price-container{
 display:flex;
 flex-direction: row;
 
+}
+.paginator-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  margin-top: 20px; /* Space between books and paginator */
+}
+
+mat-paginator {
+  width: auto;
 }

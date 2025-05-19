@@ -1,0 +1,42 @@
+<div *ngIf="loading" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
+
+
+<div *ngIf="!loading">
+<div class="container">
+  <div class="heading-container">
+    <span [routerLink]="['/dashboard/home']" class="home-span">Home</span>
+    / My Orders
+  </div>
+
+  <div class="orders-containers">
+    <p>My Orders ({{ orderItems.length }})</p>
+  </div>
+
+  <div *ngIf="orderItems.length > 0; else emptyOrder">
+    <div *ngFor="let item of orderItems" class="order-card">
+      <div class="order-header">
+        <span class="order-id"><strong>Order ID: {{ item.purcheseId }}</strong></span>
+        <span class="order-date-dot">● Ordered on {{ item.purcheseDate | date:'mediumDate' }}</span>
+      </div>
+
+      <div class="order-item">
+        <img [src]="item.book?.bookImage" alt="Book Image" class="book-img" />
+        <div class="order-item-details">
+          <div class="title">{{ item.book?.bookName }}</div>
+          <div class="author">{{ item.book?.author }}</div>
+          <div class="price">
+            <span class="current-price">Rs. {{ item.book?.discountPrice }}</span>
+            <span class="original-price">Rs. {{ item.book?.price }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #emptyOrder>
+    <p class="empty-message">Your Order items are empty.</p>
+  </ng-template>
+</div>
+</div>

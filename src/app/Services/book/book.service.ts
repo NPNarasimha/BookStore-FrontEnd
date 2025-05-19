@@ -14,6 +14,9 @@ this.token=this.Http.getHeader();
     const header=this.Http.getHeaderToken();
     return this.Http.getApi('/api/books',header);
   }
-  
+  GetBookById(bookId:number){
+    const header=this.Http.getHeaderToken();
+    return this.Http.getApi(`/api/books/${bookId}`,header);
+  }
 
 }

@@ -1,0 +1,103 @@
+<div *ngIf="isLoading" class="spinner-container">
+  <mat-spinner diameter="50"></mat-spinner>
+</div>
+<div *ngIf="!isLoading" >
+<div *ngIf="bookdetails">
+  <div class="heading-container">
+    <span [routerLink]="['/dashboard/home']" class="home-span">Home </span>
+    / books<span>({{bookdetails.bookId}})</span>
+  </div>
+  <div class="book-details-wrapper">
+    <div class="image-gallery">
+      <div class="img-container">
+        <img [src]="bookdetails.bookImage" alt="image 1" class="sideimg" />
+        <img [src]="bookdetails.bookImage" alt="image 2" class="sideimg" />
+      </div>
+      <div>
+        <div class="main-img">
+          <img [src]="bookdetails.bookImage" alt="Book Image">
+        </div>
+        <div class="button-group">
+  <ng-container *ngIf="!addtobag; else cartBlock">
+    <button class="add-to-cart-btn" (click)="AddCart()">
+      ADD TO CART
+    </button>
+  </ng-container>
+
+  <ng-template #cartBlock>
+    <div class="quantity-section">
+      <button (click)="DecreaseQuantity()">−</button>
+      <span>{{ quantity }}</span>
+      <button (click)="IncreaseQuantity()">+</button>
+    </div>
+  </ng-template>
+  <button class="wishlist-btn" [routerLink]="['/dashboard/wishlist']" (click)="AddToWishlist()">
+    <span class="heart-icon">&#10084;</span> WISHLIST
+  </button>
+</div>
+
+      </div>
+    </div>
+    <div class="book-details">
+      <h3 class="bookname">{{ bookdetails.bookName }}</h3>
+      <p class="bookauthor">by {{ bookdetails.author }}</p>
+      <div>
+        <div class="rating-box">
+          <span class="rating-number">4.5</span>
+          <span class="star-icon">&#9733;</span>
+        </div>
+        <span>({{ bookdetails.quantity }})</span>
+      </div>
+      <div class="price-container">
+        <p class="book-price">Rs {{ bookdetails.discountPrice }} </p>
+        <p class="book-price original">Rs.{{ bookdetails.price }}</p>
+      </div>
+      <div class="horizontal-line"></div>
+      <div class="book-description">
+        <h4>Book Detail</h4>
+        <p>{{ bookdetails?.description }}</p>
+      </div>
+      <div class="horizontal-line"></div>
+
+      <div class="feedback-section">
+        <h4>Customer Feedback</h4>
+
+        <div class="feedback-card">
+          <p>Overall Rating</p>
+          <div class="stars">
+            <mat-icon *ngFor="let star of [1, 2, 3, 4, 5]" [ngClass]="{ active: star <= selectedRating }"
+              (click)="selectRating(star)">
+              star
+            </mat-icon>
+          </div>
+        </div>
+        <textarea [(ngModel)]="feedbackText" placeholder="Write your feedback here..." rows="4"
+          class="feedback-textarea">
+          </textarea>
+        <button class="feedback-btn" (click)=submitFeedback()>Submit</button>
+      </div>
+
+
+
+      <div class="submitted-feedbacks" *ngIf="submittedFeedbacks.length > 0">
+        <h5>Previous Feedback</h5>
+
+        <div *ngFor="let fb of submittedFeedbacks" class="feedback-item">
+          <div class="name-row">
+            <mat-icon class="user-icon">person</mat-icon>
+            <strong>{{ fb.name }}</strong>
+          </div>
+          <div class="stars">
+            <mat-icon *ngFor="let s of [1,2,3,4,5]" [ngClass]="{ active: s <= fb.rating }">
+              star
+            </mat-icon>
+          </div>
+          <p>{{ fb.text }}</p>
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
