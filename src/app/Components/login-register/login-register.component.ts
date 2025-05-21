@@ -14,6 +14,7 @@ export class LoginRegisterComponent implements OnInit {
   hidePassword: boolean = true;
   RegisterForm!: FormGroup
   LoginForm!: FormGroup;
+  isLoading :boolean=false;
   constructor(private service: UserService, private snackbar: MatSnackBar,private router:Router) { }
   ngOnInit(): void {
      this.LoginForm =new FormGroup({
@@ -33,7 +34,9 @@ export class LoginRegisterComponent implements OnInit {
   }
   
   Register() {
+    this.isLoading = true;
     if (this.RegisterForm.valid) {
+      
       const formdata = this.RegisterForm.value
       console.log("Register successfull ", formdata);
       const payload = {
@@ -45,12 +48,14 @@ export class LoginRegisterComponent implements OnInit {
       this.service.register(payload).subscribe({
         next: (result: any) => {
           console.log(result);
+          this.isLoading = false;
          this.snackbar.open('Signup successful!', 'Close', {
                duration: 3000,
               
             });
           },
         error: (err) => {
+          this.isLoading = false;
           this.snackbar.open('Signup unsuccessful!.Please try again.', 'Close', {
             duration: 3000,
           });
@@ -65,6 +70,7 @@ export class LoginRegisterComponent implements OnInit {
     }
   }
   Login(){
+    this.isLoading = true;
       if (this.LoginForm.valid) {
       console.log('Login Successful', this.LoginForm.value);
       const payload = {
@@ -73,6 +79,7 @@ export class LoginRegisterComponent implements OnInit {
       };
       this.service.login(payload).subscribe({
         next:(result:any)=>{
+          this.isLoading = false;
             console.log(result);
             const token=result?.data?.accessToken;
             if(token){
@@ -94,7 +101,9 @@ export class LoginRegisterComponent implements OnInit {
       },
       error: (err) => {
         console.error('Login Error:', err);
+        this.isLoading = false;
         this.snackbar.open(
+          
           'Login failed. Please check your credentials.',
           'Close',
           {

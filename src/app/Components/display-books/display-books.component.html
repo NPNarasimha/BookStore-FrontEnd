@@ -1,0 +1,54 @@
+<div *ngIf="isLoading" class="spinner-container">
+  <mat-spinner diameter="50"></mat-spinner>
+</div>
+<div  *ngIf="!isLoading">
+<div class="book-container">
+  <div class="book-Header">
+    <div class="books-title">
+      Book <span>({{ original.length }})</span>
+    </div>
+
+    <mat-form-field appearance="outline" class="sort-dropdown">
+      <mat-select [(value)]="sortOption" (selectionChange)="sortBooks()">
+        <mat-option value="relavence">Sort by Relevance</mat-option>
+        <mat-option value="pricelow">Price: low to high</mat-option>
+        <mat-option value="pricehigh">Price: high to low</mat-option>
+        <mat-option value="newest">Newest Arrivals</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="books">
+    <div class="book-card" *ngFor="let book of pagedBooks" (click)="viewBookDetails(book.bookId)">
+      <div class="book-image">
+        <img [src]="book.bookImage" alt="Book Image" />
+      </div>
+
+      <div class="book-details">
+        <h3 class="bookname">{{ book.bookName }}</h3>
+        <p class="bookauthor">by {{ book.author }}</p>
+        <div>
+        <div class="rating-box">
+          <span class="rating-number">4.5</span>
+          <span class="star-icon">&#9733;</span>
+        </div>
+        <span>({{ book.quantity }})</span>
+        </div>
+    <div class="price-container">
+        <p class="book-price">Rs {{ book.discountPrice }}</p>
+        <p class="book-price original">{{ book.price }}</p>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</div>
+<div class="paginator-container">
+  <mat-paginator
+    [length]="filterBooks.length"
+    [pageSize]="pagesize"
+    [pageSizeOptions]="[4, 8, 12]"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+</div>
+</div>

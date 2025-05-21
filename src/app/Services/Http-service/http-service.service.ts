@@ -14,6 +14,13 @@ export class HttpServiceService {
     });
     return header;
   }
+  getHeaderToken() {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+    //Authorization: token?.startsWith('Bearer ') ? token : `Bearer ${token}`
+     Authorization: `Bearer ${token}`
+    });
+  }
   getApi(endpoint:string ,headers: HttpHeaders =new HttpHeaders()){
     return this.http.get(this.BASE_URL+endpoint,{headers})
   }

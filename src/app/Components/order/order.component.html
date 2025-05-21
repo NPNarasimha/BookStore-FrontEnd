@@ -1,0 +1,38 @@
+<div *ngIf="loading" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="!loading">
+  <div class="container">
+    <div class="order-wrapper">
+      <img src="/images/Successimg.png" alt="Success Image" />
+      <p>
+        Harry!!! Your order is confirmed. The order ID is <strong>#{{ orderId }}</strong>.
+
+        Save the order ID for further communication.
+      </p>
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8 info-table">
+
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>Full Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="contact">
+          <mat-header-cell *matHeaderCellDef> Contact </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.contact}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+          <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.address}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <button class="Continue-btn" (click)="GotoDisplayBooks();">Continue Shoping</button>
+    </div>
+  </div>
+</div>
