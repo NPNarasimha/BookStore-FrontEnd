@@ -6,6 +6,7 @@ import { CustomerService } from '../../Services/Customer/customer.service';
 import { OrderService } from '../../Services/order/order.service';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
+import { SharedService } from '../../Services/Shared/shared.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class CartComponent implements OnInit {
   isLoading: boolean = false;
   constructor(private router:Router ,private cartService: CartService, private snackBar: MatSnackBar
     , private fb: FormBuilder, private customerservice: CustomerService,
-  private orderservice:OrderService) {
+  private orderservice:OrderService,private sharedservice:SharedService) {
 
     this.customerForm = this.fb.group({
       fullName: ['', Validators.required],
@@ -110,7 +111,9 @@ export class CartComponent implements OnInit {
         this.cartItems = this.cartItems.filter(ci => ci.book.bookId !== item.book.bookId);
         this.quantity = this.cartItems.length;
         this.GetCartItems();
+        this.sharedservice.decrementCartCount();
         this.snackBar.open('Item removed from cart', '', { duration: 2000 });
+        
       },
       error: (err) => {
         console.error('Failed to remove item:', err);

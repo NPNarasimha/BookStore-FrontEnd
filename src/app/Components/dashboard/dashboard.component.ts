@@ -20,7 +20,7 @@ constructor(private router:Router,private sharedservice:SharedService,private se
   });
   }
 goToCart() {
-  this.sharedservice.setCartCount(0);    
+   //this.sharedservice.setCartCount();    
 }
 onSearchChange(){
   this.searchService.setSearchTerm(this.searchTerm)

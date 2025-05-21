@@ -13,13 +13,30 @@ wishlistCount$ = this.wishlistCountSubject.asObservable();
   updateWishlistCount() {
     this.wishlistCountSubject.next();
   }
-private cartCount = new BehaviorSubject<number>(0);
-cartCount$ = this.cartCount.asObservable();
+ private cartCountSubject = new BehaviorSubject<number>(this.getInitialCartCount());
+  cartCount$ = this.cartCountSubject.asObservable();
+
+  private getInitialCartCount(): number {
+    const storedCount = localStorage.getItem('cartCount');
+    return storedCount ? parseInt(storedCount, 10) : 0;
+  }
+
   setCartCount(count: number) {
-    this.cartCount.next(count);
+    this.cartCountSubject.next(count);
+    localStorage.setItem('cartCount', count.toString());
   }
 
   incrementCartCount() {
-    this.cartCount.next(this.cartCount.value + 1);
+    const current = this.cartCountSubject.value;
+    const newCount = current + 1;
+    this.cartCountSubject.next(newCount);
+    localStorage.setItem('cartCount', newCount.toString());
+  }
+
+  decrementCartCount() {
+    const current = this.cartCountSubject.value;
+    const newCount = current > 0 ? current - 1 : 0;
+    this.cartCountSubject.next(newCount);
+    localStorage.setItem('cartCount', newCount.toString());
   }
 }

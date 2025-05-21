@@ -95,6 +95,7 @@ export class BookDetailsComponent implements OnInit {
         this.snackBar.open('Book added to cart!', '', { duration: 3000 });
         this.cartId=result?.data?.cartId || result?.cartId;
         console.log("cart Id",this.cartId);
+        
          this.sharedservice.incrementCartCount();
       }, error: (err) => {
         console.error('Error adding to cart:', err);
